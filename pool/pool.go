@@ -49,4 +49,5 @@ func (p *Pool) Done() {
 
 func (p *Pool) Wait() {
 	p.wg.Wait()
+	close(p.ch)
 }

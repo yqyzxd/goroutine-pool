@@ -15,7 +15,7 @@ import (
 )
 
 func TestPool(t *testing.T) {
-	size := 10
+	size := 20
 	//1. create pool
 	pool, _ := NewPool(size)
 	fmt.Printf("num:%d\n", runtime.NumGoroutine())
@@ -35,7 +35,10 @@ func TestPool(t *testing.T) {
 	}
 	fmt.Println("Wait")
 	pool.Wait()
+	close(ch)
+
 	//务必在wait之后操作数据
+	//time.Sleep(time.Second)
 	fmt.Printf("values length:%d\n", len(values))
 	fmt.Println("Finish")
 }
